@@ -25,3 +25,12 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: white;
+}
+border{
+  border-radius: 10px;
+}

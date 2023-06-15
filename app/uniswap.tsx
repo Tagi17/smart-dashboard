@@ -4,13 +4,12 @@ import { Token } from '@uniswap/sdk';
 import { ethers } from 'ethers';
 import { useEffect } from 'react';
 
-const provider = new ethers.JsonRpcProvider("htpps://polygon-mumbai.infura.io/v3/952063985f82462c88e42f4ed150b486");
-
-const chainId: ChainId = ChainId.MATIC_MUMBAI;
+const provider = new ethers.JsonRpcProvider("https://polygon-mumbai.infura.io/v3/952063985f82462c88e42f4ed150b486");
 
 export async function fetchTokenData(tokenAddress: string) {
+
   const network = await provider.getNetwork();
-  const chainId = network.chainId; // set the chain 
+  const chainId = ChainId.MAINNET;
   const token = new Token(chainId, tokenAddress, 18, 'TOKEN SYMBOL', 'TOKEN NAME');
   const tokenWithInfo = await Fetcher.fetchTokenData(chainId, tokenAddress);
 
