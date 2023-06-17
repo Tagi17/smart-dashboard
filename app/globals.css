@@ -16,15 +16,6 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
 page {
   display: flex;
   flex-direction: column;
@@ -33,4 +24,7 @@ page {
 }
 border{
   border-radius: 10px;
+}
+backgroundColor{
+  background-color:  #0f0716;
 }

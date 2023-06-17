@@ -1,10 +1,11 @@
 import './globals.css'
 
-import { Inter } from 'next/font/google'
-import NavBar from './NavBar'
-import { SSRProvider } from 'react-bootstrap'
+import { Container, SSRProvider } from '@/app/components/bootstrap';
 
-const inter = Inter({ subsets: ['latin'] })
+import { Exo_2 } from 'next/font/google'
+import NavBar from './NavBar'
+
+const exo = Exo_2({ subsets: ['latin'], weight: ['500'] })
 
 export const metadata = {
   title: 'Create Next App',
@@ -18,11 +19,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+       <body className={exo.className}>
+        <SSRProvider>
         <NavBar /> 
           <main>
-            {children}
+            <Container> 
+                {children}
+              </Container>
           </main>
+        </SSRProvider>
       </body>
     </html>
   )
