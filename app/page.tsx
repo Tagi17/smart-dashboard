@@ -1,5 +1,3 @@
-import '../.next/static/css/app/layout.css';
-
 import layout from './layout';
 
 export default async function Page() {
