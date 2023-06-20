@@ -8,12 +8,10 @@ import { BsExclude } from "react-icons/bs";
 
 export default function NavBar() {
     return (
-        <Navbar className="py-3" style={{backgroundColor: "#f310e1", fontSize: "1.9rem" }} bg="light" variant="light" sticky="top">
-              <Container className="d-flex align-items-center justify-content-center">
-             <div className="d-flex align-items-center"> 
-                <BsExclude size={24} className="custom-icon mr-2" />
-                <Navbar.Brand href="/" className="text-center">DASHBOARD</Navbar.Brand>
-            </div>
+        <Navbar className="py-3" style={{borderBottom: "2px solid #f310e1", fontSize: "1.9rem" }} bg="light" variant="light" sticky="top">
+            <Container className="d-flex align-items-center justify-content-center">
+                    <BsExclude size={40} className="custom-icon mr-2" />
+                    <span className="text-center">DASHBOARD</span>
             </Container>
         </Navbar>
     );

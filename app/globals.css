@@ -37,9 +37,56 @@ body{
   justify-content: center;
   font-size: 1.5rem;
 }
-.icon{
-  justify-content: left;
+.custom-icon{
+  padding-top: 10px;
+  padding-left: 10px;
+  position: absolute;
 }
 .navbar-custom{
   height: 4vh;
+}
+.curved-box{
+  border-radius: 10px;
+  outline: none;
+  border: 2px solid #f310e1;
+  padding: 10px;
+}
+.animated-banner{
+  width: 100%;
+  overflow: hidden;
+}
+.animated-text{
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+  animation-fill-mode: both;
+  animation-delay: -20s;
+}
+
+.marquee-container{
+  overflow: hidden;
+  width: 100%;
+  
+.marquee{
+  animation-fill-mode: both;
+  left: 100%;
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+.marquee2{
+    animation-delay: 15s;
+  }
+  b {
+    padding-left: 10px;
+  }
+}
+@keyframes marquee {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -100%
+  }
 }
