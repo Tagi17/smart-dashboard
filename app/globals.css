@@ -15,7 +15,10 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
+@font-face {
+  font-family: 'Bluu';
+  src: url('fonts/BluuNext-master/Fonts/webfonts/bluunext-bold.ttf') format('truetype');
+}
 page {
   display: flex;
   flex-direction: column;
@@ -45,12 +48,6 @@ body{
 .navbar-custom{
   height: 4vh;
 }
-.curved-box{
-  border-radius: 10px;
-  outline: none;
-  border: 2px solid #f310e1;
-  padding: 10px;
-}
 .animated-banner{
   width: 100%;
   overflow: hidden;
@@ -65,22 +62,52 @@ body{
 .marquee-container{
   overflow: hidden;
   width: 100%;
+
   
 .marquee{
   animation-fill-mode: both;
+  display: flex;
   left: 100%;
   width: 100%;
-  position: absolute;
-  overflow: hidden;
+  position: relative;
+  overflow-x: hidden;
   white-space: nowrap;
   animation: marquee 30s linear infinite;
 }
+.marquee-item {
+  display: inline-block;
+  white-space: nowrap;
+}
 .marquee2{
     animation-delay: 15s;
+    display: inline-block;
   }
   b {
     padding-left: 10px;
   }
+}
+.curved-box{
+  border-radius: 30px;
+  outline: none;
+  border: 2px solid #f310e1;
+  margin-left: 90vh;
+  margin-right: 20vh;
+  
+}
+.uniswap{
+  padding: 20px;
+  font-size: 1.5rem;
+}
+.edge{
+  border-radius: 10px;
+  border: 2px solid #f310e1;
+  padding: 10px;
+  margin: 10px;
+}
+.vertical-line {
+  border-right: 2px solid #f310e1;
+  height: 100%;
+  width: 2px;
 }
 @keyframes marquee {
   0% {

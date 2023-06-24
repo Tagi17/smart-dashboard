@@ -11,10 +11,27 @@ export default async function Page() {
           <AnimatedBanner />
         </div>
         
-        <div>
-          uniswap 
+        <div className="uniswap">
+          Gimmie yo money  
         </div>
         
+        <div className="curved-box">
+          <div className="uniswap">
+            Uniswap
+          </div>
+          <div className="uniswap">
+            See all your staking
+            </div>
+              <div className="row">
+                <div className="col-4">
+                  
+                  <div className="verticle-line">
+                <div className="col-8">
+                </div>  
+                </div>
+              </div>
+          </div>
+        </div>
       </div>
     </div>
   );

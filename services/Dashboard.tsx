@@ -41,7 +41,7 @@ function Dashboard(){
                 </tbody>
             </table>         
         </div>
- );
+    );
 }
 
 export default Dashboard;

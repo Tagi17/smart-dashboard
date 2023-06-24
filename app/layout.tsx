@@ -2,10 +2,10 @@ import './globals.css'
 
 import { Container, SSRProvider } from '@/app/components/bootstrap';
 
-import { Exo_2 } from 'next/font/google'
+import ApplyCustomFont from './clientFont';
+import Head from 'next/head';
 import NavBar from './NavBar'
-
-const exo = Exo_2({ subsets: ['latin'], weight: ['500'] })
+import css from 'styled-jsx/css';
 
 export const metadata = {
   title: 'Create Next App',
@@ -18,8 +18,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+    <>
     <html lang="en">
-       <body className={exo.className}>
+       <body>
+        <ApplyCustomFont />
         <SSRProvider>
         <NavBar /> 
           <main>
@@ -30,5 +32,6 @@ export default function RootLayout({
         </SSRProvider>
       </body>
     </html>
-  )
+    </>
+  );
 }
