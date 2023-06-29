@@ -12,24 +12,19 @@ export default async function Page() {
         <div className="uniswap">
           Gimmie yo money  
         </div>
-          <div className="flex">
-            <div className="flex-auto w-1 mr-10 ml-5">
-                <div className="curved-box">
-                  <div className="uniswap">user wallet info</div>
-                </div>
-            </div>
-            <div className="flex-auto w-10 rounded-l-lg">
-              <div className="curved-box1">
-                <div className="uniswap">UNISWAP</div>
-                <div className="uniswap">See all your staked crypto</div>
-              </div>
-            </div>
-            <div className="flex-auto w-96 mr-5 rounded-r-lg">
-              <div className="curved-box2">
-                <div className="uniswap">UNISWAP</div>
-              </div>
-            </div>
-          </div>     
+        <div className="grid grid-cols-3 grid-rows-1" style={{ gridTemplateColumns: '.5fr .5fr 1fr' }}> 
+          <div className="curved-box">
+            <span>user wallet info</span>
+            <span>10</span>
+          </div>
+          <div className="curved-box1">
+            <span>UNISWAP</span>
+            <span>See all your staked crypto</span>
+          </div>
+          <div className="curved-box2">
+            <span>uniswap pic</span>
+          </div>
+        </div>
     </div>
   );
 }

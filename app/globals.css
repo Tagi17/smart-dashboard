@@ -91,12 +91,18 @@ body{
   outline: none;
   border: 2px solid #f310e1;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+  margin-left: 10px;
 }
 .curved-box3{
   border-radius: 30px;
   outline: none;
   border-width: 2px 0 2px 2px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 .curved-box1 {
   border-radius: 30px 0 0 30px; /* top-left top-right bottom-right bottom-left */
@@ -104,6 +110,8 @@ body{
   padding: 20px;
   border: 2px solid #f310e1;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .curved-box1::after {
@@ -115,6 +123,8 @@ body{
   width: 2px;
   background-color: #f310e1;
   border-radius: 0 30px 30px 0;
+  display: flex;
+  flex-direction: column;
 }
 .curved-box2 {
   border-radius: 0 30px 30px 0; /* top-left top-right bottom-right bottom-left */
@@ -122,6 +132,9 @@ body{
   padding: 20px;
   border: 2px solid #f310e1;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
 }
 
 .curved-box2::before {
@@ -133,6 +146,9 @@ body{
   width: 2px;
   background-color: #f310e1;
   border-radius: 30px 0 0 30px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
 }
 .uniswap{
   padding: 20px;
