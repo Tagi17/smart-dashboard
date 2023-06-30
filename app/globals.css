@@ -152,10 +152,38 @@ body{
 }
 .uniswap{
   padding: 20px;
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 20px;
+  padding-bottom: 50px;
+}
+.uniswap1{
+  padding: 20px;
+  font-size: 2.5rem;
+  text-align: center;
+}
+.saysc{
+  padding: 20px;
+  font-size: 2rem;
+  text-align: center;
+}
+.liquid{
+  flex: 1;
+  margin-top: 50px;
   font-size: 1.5rem;
 }
+.leftBox{
+  padding: 20px;
+  font-size: 2.5rem;
+  text-align: center;
+}
+.leftBox1{
+  padding: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+}
 .edge{
-  border-radius: 10px;
+  border-radius: 5px;
   border: 2px solid #f310e1;
   padding: 10px;
   margin: 10px;
@@ -175,6 +203,11 @@ body{
   background-color: #000;
   left: 50%; /* Adjust the position as needed */
   transform: translateX(-50%);
+}
+.image {
+  max-width: 100%;
+  max-height: 100%;
+  margin-right: 10px;
 }
 div[class="row"] {
   outline: 1px dotted rgba(0, 0, 0, 0.25);
