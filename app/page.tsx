@@ -1,5 +1,3 @@
-import { Container, Navbar } from "react-bootstrap";
-
 import AnimatedBanner from './animatedBanner';
 import Image from 'next/image';
 import layout from './layout';
