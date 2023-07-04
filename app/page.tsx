@@ -1,13 +1,17 @@
 import AnimatedBanner from './animatedBanner';
 import Image from 'next/image';
+import  {getRainbowKitProvider}  from './rainbowKit';
 import layout from './layout';
 import uniswap from "./uniswap.png";
 
-export default async function Page() {
+function Page() {
+  const RainbowKitProvider = getRainbowKitProvider(Page, {});
+
+  
   return (
-    <div>
+    <RainbowKitProvider>
+      <div>
         <div>
-          <AnimatedBanner />
         </div>
         <div className="uniswap">
           All in one Tracker for your Wallet 
@@ -27,10 +31,10 @@ export default async function Page() {
             <div className="image flex"> 
               <Image src={uniswap} alt="Uniswap logo" width={200} height={200}/>
               <span className="liquid flex-grow">{'>'}Liquid Staking</span>
-            </div>
-             
-            </div>
+            </div>  
+          </div>
         </div>
-    </div>
+      </div>
+      </RainbowKitProvider>
   );
 }
