@@ -1,15 +1,19 @@
 import AnimatedBanner from './animatedBanner';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import  {getRainbowKitProvider}  from './rainbowKit';
 import layout from './layout';
 import uniswap from "./uniswap.png";
 
-function Page() {
-  const RainbowKitProvider = getRainbowKitProvider(Page, {});
+const RainbowKitWrapper = dynamic(() => import('./rainbowKit').then((module) => module.getRainbowKitProvider), {
+  ssr: false, // Prevents server-side rendering of this component
+  loading: () => <div>Loading...</div> // Custom loading component
+});
 
-  
+function Page() {
   return (
-    <RainbowKitProvider>
+    <>
+    <RainbowKitWrapper>
       <div>
         <div>
         </div>
@@ -35,6 +39,8 @@ function Page() {
           </div>
         </div>
       </div>
-      </RainbowKitProvider>
+      </RainbowKitWrapper>
+    </>
   );
 }
+export default Page;

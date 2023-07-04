@@ -46,7 +46,7 @@ const wagmiConfig = createConfig({
   webSocketPublicClient,
 });
 
-export function getRainbowKitProvider(Component: React.ComponentType<any>, pageProps: any) {
+export function getRainbowKitProvider(Component: React.ComponentType<AppProps['Component']>, pageProps: AppProps['pageProps']) {
   const chains = [goerli];
 
   return (
