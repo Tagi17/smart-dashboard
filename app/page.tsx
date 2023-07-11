@@ -1,21 +1,27 @@
+import "@rainbow-me/rainbowkit/styles.css";
+
+import { ConnectButton, getDefaultWallets } from "@rainbow-me/rainbowkit";
+import { WagmiConfig, configureChains, createConfig } from "wagmi";
+import { bsc, bscTestnet, goerli, mainnet, polygon } from "wagmi/chains";
+
 import AnimatedBanner from './animatedBanner';
 import Image from 'next/image';
+import IsMounted from "./components/isMounted";
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { alchemyProvider } from "wagmi/providers/alchemy";
 import dynamic from 'next/dynamic';
-import  {getRainbowKitProvider}  from './rainbowKit';
 import layout from './layout';
+import { publicProvider } from "wagmi/providers/public";
 import uniswap from "./uniswap.png";
 
-const RainbowKitWrapper = dynamic(() => import('./rainbowKit').then((module) => module.getRainbowKitProvider), {
-  ssr: false, // Prevents server-side rendering of this component
-  loading: () => <div>Loading...</div> // Custom loading component
-});
-
 function Page() {
+
   return (
     <>
-    <RainbowKitWrapper>
+    
       <div>
         <div>
+          <AnimatedBanner />
         </div>
         <div className="uniswap">
           All in one Tracker for your Wallet 
@@ -39,8 +45,9 @@ function Page() {
           </div>
         </div>
       </div>
-      </RainbowKitWrapper>
     </>
   );
 }
+
+
 export default Page;

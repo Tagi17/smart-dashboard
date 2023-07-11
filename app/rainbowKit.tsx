@@ -9,7 +9,6 @@ import {
   getDefaultWallets,
 } from '@rainbow-me/rainbowkit';
 import { WagmiConfig, configureChains, createConfig } from 'wagmi';
-import { argentWallet, trustWallet } from '@rainbow-me/rainbowkit/wallets';
 
 import type { AppProps } from 'next/app';
 import { Chain } from 'wagmi/chains';
@@ -46,7 +45,7 @@ const wagmiConfig = createConfig({
   webSocketPublicClient,
 });
 
-export function getRainbowKitProvider(Component: React.ComponentType<AppProps['Component']>, pageProps: AppProps['pageProps']) {
+export function getRainbowKitProvider(Component: React.ComponentType<AppProps["Component"]>, pageProps: AppProps["pageProps"]) {
   const chains = [goerli];
 
   return (

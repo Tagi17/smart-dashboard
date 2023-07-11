@@ -9,8 +9,6 @@ export default function AnimatedBanner() {
                 <div className="marquee-item">
                     All in one tracker for your wallet 
                 </div>
-            </div>
-            <div className="marquee marquee2 d-flex justify-content-around">
                 <div className="marquee-item">
                     All in one tracker for your wallet 
                 </div>
