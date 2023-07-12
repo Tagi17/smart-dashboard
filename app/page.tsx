@@ -18,13 +18,13 @@ function Page() {
 
   return (
     <>
-    
+      
       <div>
         <div>
           <AnimatedBanner />
         </div>
         <div className="uniswap">
-          All in one Tracker for your Wallet 
+       
         </div>
         <div className="grid grid-cols-3 grid-rows-1" style={{ gridTemplateColumns: '.5fr .5fr 1fr' }}> 
           <div className="curved-box">

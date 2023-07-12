@@ -2,7 +2,7 @@
 
 import '../app/globals.css'
 
-import { ConnectButton, Theme, getDefaultWallets } from "@rainbow-me/rainbowkit";
+import { ConnectButton, darkTheme, getDefaultWallets } from "@rainbow-me/rainbowkit";
 import { Container, Navbar } from "react-bootstrap";
 import { WagmiConfig, configureChains, createConfig } from "wagmi";
 import { bsc, bscTestnet, goerli, mainnet, polygon } from "wagmi/chains";
@@ -31,13 +31,6 @@ const { chains, publicClient } = configureChains(
     publicClient,
   });
 
-
-  const myCustomTheme: Theme = {
-    fonts: {
-      body: 'Bluu',
-      connectButtonText: 'Bluu',
-    },
-  };
   
 
   const ApplyCustomFont = () => {
@@ -62,53 +55,31 @@ const { chains, publicClient } = configureChains(
     return null;
   };
 
+
 export default function NavBar() {
     const mounted = IsMounted();
     if (!mounted) return;
     return (
         <>
-    <RainbowKitProvider theme={myCustomTheme} chains={chains}>
-            <ApplyCustomFont />
-            <WagmiConfig config={wagmiConfig}>
-            <Navbar className="py-3" style={{ backgroundColor: "#0c030f", borderBottom: "2px solid #f310e1", fontSize: "1.9rem" }} bg="light" variant="light" sticky="top">
-            <div className="grid grid-cols-3 grid-rows-1" style={{ gridTemplateColumns: ".5fr .5fr 1fr" }}>
-                <div className="col-span-1">
-                <BsExclude size={40} className="custom-icon mr-2" />
-                </div>
-                <div className="col-span-1">
-                <span className="text-center">DASHBOARD</span>
-                </div>
-                <div className="col-span-1 flex justify-end">
+        <Navbar className="py-3" style={{ backgroundColor: "#0c030f", borderBottom: "2px solid #f310e1", fontSize: "1.9rem" }} bg="light" variant="light" sticky="top">
+        <div className="grid grid-cols-3 grid-rows-1" style={{ gridTemplateColumns: ".5fr .5fr 1fr" }}>
+            <div className="col-span-1">
+            <BsExclude size={40} className="custom-icon mr-2" />
+            </div>
+            <div className="col-span-1">
+            <span className="text-center">DASHBOARD</span>
+            </div>
+            <div className="col-span-1 flex justify-end">
                 <div className="wallet-button">
-                   
-                    <RainbowKitProvider chains={chains}>
-                        <ConnectButton.Custom>
-                        {({ account, chain, openConnectModal }) => {
-                            const connected = account && chain;
-                            if (!connected) {
-                            return (
-                                <button onClick={openConnectModal} type="button">
-                                Connect Wallet
-                                </button>
-                            );
-                            }
-                            // Custom button for connected state
-                            return (
-                            <button onClick={openConnectModal} type="button">
-                                {account.displayName}
-                                {account.displayBalance ? ` (${account.displayBalance})` : ''}
-                            </button>
-                            );
-                        }}
-                        </ConnectButton.Custom>
-                    </RainbowKitProvider>
-                    
-                </div>
+                    <WagmiConfig config={wagmiConfig}>
+                        <RainbowKitProvider chains={chains}>
+                        <ConnectButton />
+                        </RainbowKitProvider>
+                    </WagmiConfig>
                 </div>
             </div>
-            </Navbar>
-            </WagmiConfig>
-        </RainbowKitProvider>
+        </div>
+        </Navbar>
         </>
     );
 }
