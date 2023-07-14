@@ -1,17 +1,9 @@
 import "@rainbow-me/rainbowkit/styles.css";
 
-import { ConnectButton, getDefaultWallets } from "@rainbow-me/rainbowkit";
-import { WagmiConfig, configureChains, createConfig } from "wagmi";
-import { bsc, bscTestnet, goerli, mainnet, polygon } from "wagmi/chains";
-
 import AnimatedBanner from './animatedBanner';
 import Image from 'next/image';
-import IsMounted from "./components/isMounted";
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { alchemyProvider } from "wagmi/providers/alchemy";
 import dynamic from 'next/dynamic';
 import layout from './layout';
-import { publicProvider } from "wagmi/providers/public";
 import uniswap from "./uniswap.png";
 
 function Page() {
