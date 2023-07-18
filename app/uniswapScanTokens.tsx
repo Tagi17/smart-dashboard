@@ -1,6 +1,10 @@
-import { Fetcher, Pair, Token, TokenAmount } from '@uniswap/sdk';
-import { JsonRpcProvider, ethers } from 'ethers';
+import { ChainId, Fetcher, Pair, Token, TokenAmount } from '@uniswap/sdk';
 import { gql, request } from 'graphql-request';
+
+import { JsonRpcProvider } from 'ethers';
+
+const ethers = require('ethers');
+const fs = require('fs');
 
 export interface LiquidityPosition {
   liquidityTokenBalance: string;
@@ -33,7 +37,7 @@ class UniswapDataProviderImpl implements UniswapDataProvider {
 
   constructor(graphApiEndpoint: string, providerUrl: string) {
     this.GRAPH_API_ENDPOINT = graphApiEndpoint;
-    this.provider = new ethers.providers.JsonRpcProvider(providerUrl);
+    this.provider = new JsonRpcProvider(providerUrl);
   }
 
   async getConnectedWalletAddress(): Promise<string> {
@@ -73,33 +77,33 @@ class UniswapDataProviderImpl implements UniswapDataProvider {
 
       const positionsWithBalances = await Promise.all(
         liquidityPositions.map(async (position) => {
-          const { pair } = position;
-          const token0 = new Token(pair.token0.address, pair.token0.symbol, pair.token0.decimals);
-          const token1 = new Token(pair.token1.address, pair.token1.symbol, pair.token1.decimals);
+          const USDC = new Token(ChainId.MAINNET, '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', 18, 'USDC', 'USD Coin');
+          const ETH = new Token(ChainId.MAINNET, '0xB4e16d0168e52d35CaCD2c6185b44281Ec28C9Dc', 18, 'ETH', 'Ethereum');
 
-          const pairTokens = new Pair(token0, token1);
-
-          const provider = new ethers.providers.JsonRpcProvider();
+          const pair = await Fetcher.fetchPairData(USDC, ETH);
+          
+          
+          const provider = new ethers.JsonRpcProvider("https://polygon-mumbai.infura.io/v3/952063985f82462c88e42f4ed150b486");
           const walletAddress = await this.getConnectedWalletAddress();
           const signer = provider.getSigner(walletAddress);
 
-          const [token0Balance, token1Balance] = await Promise.all([
-            Fetcher.fetchTokenBalance(this.provider, token0.address, walletAddress),
-            Fetcher.fetchTokenBalance(this.provider, token1.address, walletAddress),
+          const [USDCBalance, ETHBalance] = await Promise.all([
+            Fetcher.fetchTokenData(this.provider, USDC.address, walletAddress),
+            Fetcher.fetchTokenData(this.provider, ETH.address, walletAddress),
           ]);
 
           return {
             ...position,
             pair: {
               ...pair,
-              token0: {
-                ...pair.token0,
-                balance: new TokenAmount(token0, token0Balance),
+              USDC: {
+                ...pair.USDC,
+                balance: new TokenAmount(USDC, USDCBalance),
               },
-              token1: {
-                ...pair.token1,
-                balance: new TokenAmount(token1, token1Balance),
-              },
+              ETH: {
+                ...pair.ETH,
+                balance: new TokenAmount(ETH, ETHBalance),
+              },  
             },
           };
         })
