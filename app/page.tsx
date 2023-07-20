@@ -2,6 +2,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 
 import AnimatedBanner from './animatedBanner';
 import Image from 'next/image';
+import { WalletFunction } from "./ethersScan";
 import dynamic from 'next/dynamic';
 import layout from './layout';
 import uniswap from "./uniswap.png";
@@ -33,6 +34,9 @@ function Page() {
             <div className="image flex"> 
               <Image src={uniswap} alt="Uniswap logo" width={200} height={200}/>
               <span className="liquid flex-grow">{'>'}Liquid Staking</span>
+              <div>
+                <WalletFunction />
+              </div>
             </div>  
           </div>
         </div>
