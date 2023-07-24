@@ -1,4 +1,12 @@
+import { createPublicClient, http } from 'viem'
+
 import { ethers } from 'ethers';
+import { mainnet } from 'viem/chains'
+
+const client = createPublicClient({
+  chain: mainnet,
+  transport: http(),
+})
 
 export async function main(): Promise<void> {
     
