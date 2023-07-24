@@ -1,18 +1,15 @@
 import { createPublicClient, http } from 'viem'
 
 import { ethers } from 'ethers';
-import { mainnet } from 'viem/chains'
-
-const client = createPublicClient({
-  chain: mainnet,
-  transport: http(),
-})
+import { polygonMumbai } from 'viem/chains'
 
 export async function main(): Promise<void> {
     
-    const provider = new ethers.providers.JsonRpcProvider('https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID');
 
-    // Get the signer
+    const client = createPublicClient({
+        chain: polygonMumbai,
+        transport: http('https://polygon-mumbai.infura.io/v3/952063985f82462c88e42f4ed150b486'),
+      })    // Get the signer
     async function getSigner() {
       // Prompt the user to connect their wallet (for example, using MetaMask)
       await window.ethereum.enable();
