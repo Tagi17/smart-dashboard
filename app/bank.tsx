@@ -1,32 +1,46 @@
-import { createPublicClient, http } from 'viem'
+import { createPublicClient, createWalletClient, custom, http } from 'viem'
+import { mainnet, polygonMumbai } from 'viem/chains'
 
 import { ethers } from 'ethers';
-import { polygonMumbai } from 'viem/chains'
+import { wagmiContractConfig } from './abi'
+
+declare global {
+    interface Window {
+      ethereum: any;
+    }
+  }
+  
 
 export async function main(): Promise<void> {
+      
     
-
-    const client = createPublicClient({
+    const publicClient = createPublicClient({
         chain: polygonMumbai,
-        transport: http('https://polygon-mumbai.infura.io/v3/952063985f82462c88e42f4ed150b486'),
-      })    // Get the signer
+        transport: http('https://polygon-mumbai.infura.io/v3/952063985f82462c88e42f4ed150b486')
+      })
+    const walletClient = createWalletClient({
+        chain: mainnet,
+        transport: custom(window.ethereum)
+      })    
+
+      const [address] = await walletClient.getAddresses()
+      
+      // Get the signer
     async function getSigner() {
       // Prompt the user to connect their wallet (for example, using MetaMask)
-      await window.ethereum.enable();
-    
+      //await window.ethereum.enable();
       // Create a signer with the connected provider
-      const signer = provider.getSigner();
-    
-      return signer;
+      //const signer = provider.getSigner();
+      //return signer;
     }
-    
+
     // Usage
-    async function main() {
-      const signer = await getSigner();
+    // async function main() {
+    //   const signer = await getSigner();
     
-      // Use the signer for transactions or other operations
-      console.log('Signer address:', await signer.getAddress());
-    }
+    //   // Use the signer for transactions or other operations
+    //   console.log('Signer address:', await signer.getAddress());
+    // }
     
     main().catch(console.error);
     
@@ -374,5 +388,5 @@ export async function main(): Promise<void> {
             "type": "function"
         }
     ];
-    const simpleToken = new ethers.Contract(SIMPLETOKENADDRRESS, SIMPLETOKENABI, provider);
+    // const simpleToken = new ethers.Contract(SIMPLETOKENADDRRESS, SIMPLETOKENABI, provider);
 }
