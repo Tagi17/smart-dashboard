@@ -1,5 +1,6 @@
 import { ethers } from 'ethers';
 
+//practice with showing info from etherscan in the page.tsx 
 export const WalletFunction = async () =>{
     
     let provider = ethers.getDefaultProvider('mainnet'); 
