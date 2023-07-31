@@ -1,6 +1,7 @@
 import "@rainbow-me/rainbowkit/styles.css";
 
 import AnimatedBanner from './animatedBanner';
+import { GetAddress } from "./scanTokens/bank";
 import Image from 'next/image';
 import { WalletFunction } from "./ethersScan";
 import dynamic from 'next/dynamic';
@@ -8,16 +9,13 @@ import layout from './layout';
 import uniswap from "./uniswap.png";
 
 function Page() {
-
   return (
     <>
-      
       <div>
         <div>
           <AnimatedBanner />
         </div>
-        <div className="uniswap">
-       
+        <div className="uniswap"> 
         </div>
         <div className="grid grid-cols-3 grid-rows-1" style={{ gridTemplateColumns: '.5fr .5fr 1fr' }}> 
           <div className="curved-box">
@@ -36,6 +34,9 @@ function Page() {
               <span className="liquid flex-grow">{'>'}Liquid Staking</span>
               <div>
                 <WalletFunction />
+              </div>
+              <div>
+              <GetAddress />
               </div>
             </div>  
           </div>
