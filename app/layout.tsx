@@ -1,8 +1,7 @@
 import './globals.css'
 
-import { Container, SSRProvider } from '@/app/components/bootstrap';
-
 import ApplyCustomFont from './clientFont';
+import { Container } from '@/app/components/bootstrap';
 import Head from 'next/head';
 import NavBar from './NavBar'
 import css from 'styled-jsx/css';
@@ -22,14 +21,12 @@ export default function RootLayout({
     <html lang="en">
        <body>
         <ApplyCustomFont />
-        <SSRProvider>
         <NavBar /> 
           <main>
             <Container> 
                 {children}
               </Container>
           </main>
-        </SSRProvider>
       </body>
     </html>
     </>

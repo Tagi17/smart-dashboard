@@ -30,11 +30,11 @@ function Page() {
               </div>
           <div className="curved-box2 flex">
             <div className="image flex"> 
-              <Image src={uniswap} alt="Uniswap logo" width={200} height={200}/>
+              <Image src={uniswap} alt="Uniswap logo" width={200} height={200} priority/>
               <span className="liquid flex-grow">{'>'}Liquid Staking</span>
-              <div>
+              {/* <div>
                 <WalletFunction />
-              </div>
+              </div> */}
               <div>
               <GetAddress />
               </div>

@@ -1,10 +1,10 @@
 'use client'
 
 import { createPublicClient, createWalletClient, custom, getContract, http, parseAbi } from 'viem'
-import { mainnet, polygonMumbai } from 'viem/chains'
+import { goerli, mainnet, polygonMumbai } from 'viem/chains'
+import { useEffect, useState } from 'react';
 
 import { ethers } from 'ethers';
-import { useEffect } from 'react';
 import { wagmiContractConfig } from './abi'
 
 declare global {
@@ -17,19 +17,21 @@ declare global {
 // export async function GetAddress(): Promise<void> {
 
 export const GetAddress: React.FC = () => {
+  const [address, setAddress] = useState<string>('');
     useEffect(() => {
       const publicClient = createPublicClient({
-          chain: polygonMumbai,
-          transport: http('https://polygon-mumbai.infura.io/v3/952063985f82462c88e42f4ed150b486')
+          chain: goerli,
+          transport: http('https://goerli.infura.io/v3/f4ef13675ba347f9bf406732babe9d3d')
         })
       const walletClient = createWalletClient({
-          chain: polygonMumbai,
+          chain: goerli,
           transport: custom(window.ethereum)
         });    
 
     (async () => {
       const [address] = await walletClient.getAddresses();
       console.log('Address:', address);
+      setAddress(address);
     })();
   }, []);
 
@@ -57,6 +59,10 @@ export const GetAddress: React.FC = () => {
     //const  approveTransaction = await walletClient.writeContract(approveSimulation);
     
         return (
-          <div>console.log(address)</div>
+          <div>
+            {address}
+             <br />
+            console.log(address)
+            </div>
         );
 };
