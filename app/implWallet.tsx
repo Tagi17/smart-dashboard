@@ -4,20 +4,20 @@ import "@rainbow-me/rainbowkit/styles.css";
 
 import { ConnectButton, getDefaultWallets } from "@rainbow-me/rainbowkit";
 import { WagmiConfig, configureChains, createConfig } from "wagmi";
-import { bsc, bscTestnet, goerli, mainnet, polygon } from "wagmi/chains";
 
 import IsMounted from "./components/isMounted";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { alchemyProvider } from "wagmi/providers/alchemy";
+import { polygonMumbai } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 
 const { chains, publicClient } = configureChains(
-    [goerli],
+    [polygonMumbai],
     [publicProvider()]
   );
   const { connectors } = getDefaultWallets({
     appName: "My RainbowKit App",
-    projectId: "YOUR_PROJECT_ID",
+    projectId: "79d53986ece4f57a9937de248cef5af6",
     chains,
   });
   const wagmiConfig = createConfig({

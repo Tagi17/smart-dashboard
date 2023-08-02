@@ -1,11 +1,11 @@
 'use client'
 
-import { createPublicClient, createWalletClient, custom, getContract, http, parseAbi } from 'viem'
+import { PublicClient, createPublicClient, createWalletClient, custom, getContract, http, parseAbi, webSocket } from 'viem'
 import { goerli, mainnet, polygonMumbai } from 'viem/chains'
 import { useEffect, useState } from 'react';
 
 import { ethers } from 'ethers';
-import { wagmiContractConfig } from './abi'
+import { tokenConfig } from './abi'
 
 declare global {
     interface Window {
@@ -17,39 +17,43 @@ declare global {
 // export async function GetAddress(): Promise<void> {
 
 export const GetAddress: React.FC = () => {
-  const [address, setAddress] = useState<string>('');
-    useEffect(() => {
+  const [userAddy, setAddress] = useState<string>('');
+    
+  useEffect(() => {
       const publicClient = createPublicClient({
-          chain: goerli,
-          transport: http('https://goerli.infura.io/v3/f4ef13675ba347f9bf406732babe9d3d')
+          chain: polygonMumbai,
+          transport: webSocket('wss://polygon-mumbai.g.alchemy.com/v2/ZDgTfnpUmVWbI4_Um77CIOv7FhDDgxBP')
         })
       const walletClient = createWalletClient({
-          chain: goerli,
+          chain: polygonMumbai,
           transport: custom(window.ethereum)
         });    
-
+      
     (async () => {
-      const [address] = await walletClient.getAddresses();
-      console.log('Address:', address);
-      setAddress(address);
+      const [userAddy] = await walletClient.getAddresses();
+      console.log('Address:', userAddy);
+      setAddress(userAddy);
+      
+      const hash = await walletClient.writeContract({
+        address: '0x02BdEE024e555Df8764F0157dCd2f64e121Bc769',
+        abi: tokenConfig.abi,
+        functionName: 'mint',
+        account: userAddy,
+        args: [userAddy]
+      })
+      
+      // const { request } = await publicClient.simulateContract({
+      //   ...tokenConfig,
+      //   functionName: 'mint',
+      //   account: userAddy,
+      // });
+
     })();
   }, []);
 
-    //   const contract = getContract({
-    //     ...wagmiContractConfig,
-    //     publicClient: publicClient,
-    // })
-    
-                  // const [address] = await walletClient.getAddresses()
-      
-    //   const { request }  = await publicClient.simulateContract({
-    //     ...wagmiContractConfig,
-    //     functionName: 'mint',
-    //     account: address,
-    //   })
       
     //   const  approveSimulation  = await publicClient.simulateContract({
-    //     ...wagmiContractConfig,
+    //     ...tokenConfig,
     //     functionName: 'approve',
     //     account: address,
     //     args: [],
@@ -60,9 +64,9 @@ export const GetAddress: React.FC = () => {
     
         return (
           <div>
-            {address}
+            {userAddy}
              <br />
-            console.log(address)
+            console.log(userAddy)
             </div>
         );
 };

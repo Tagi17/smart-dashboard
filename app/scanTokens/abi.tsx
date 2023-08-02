@@ -1,4 +1,4 @@
-export const wagmiContractConfig = {
+export const tokenConfig = {
     address: '0x02BdEE024e555Df8764F0157dCd2f64e121Bc769',
     abi: [
         {
