@@ -36,7 +36,7 @@ function Page() {
                 <WalletFunction />
               </div> */}
               <div>
-              <GetAddress />
+                <GetAddress />
               </div>
             </div>  
           </div>
