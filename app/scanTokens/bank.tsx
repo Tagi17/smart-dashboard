@@ -28,15 +28,16 @@ declare global {
 export const GetAddress: React.FC = () => {
   const [userAddy, setAddress] = useState<string>('');
   const [walletClient, setWalletClient] = useState<any>(null);
-  const [amount, setAmount] = useState<string>('');
   const [hash, setHash] = useState<string>('');
   const [enteredAmount, setEnteredAmount] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   const tokenAddress = "0x02BdEE024e555Df8764F0157dCd2f64e121Bc769";
   const bankAddress = "0x0a6ab0B97550436D299F385572C6014Ccf4D55A2";
   
   const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(event.target.value);
+    const inputValue = event.target.value;
+    setEnteredAmount(inputValue);
   }
   
   const approveToken = async () => {
@@ -49,7 +50,6 @@ export const GetAddress: React.FC = () => {
     catch (error) {
       console.error('Error approving tokens:', error);
     }
-    setEnteredAmount(enteredAmount);
     const approveHash = await walletClient.writeContract({
       address: '0x02BdEE024e555Df8764F0157dCd2f64e121Bc769',
       abi: tokenConfig.abi,
@@ -147,25 +147,37 @@ export const GetAddress: React.FC = () => {
     
         return (
           <div>
-            {/* Your address: {userAddy} */}
-             
-            {/* {hash && <p>Transaction Hash: {hash}</p>} */}
-           
-           
-            {/* {walletClient && <button onClick={mintTokens}>Mint Tokens</button>} */}
+            Your address: {userAddy}
+            {hash && <p>Transaction Hash: {hash}</p>}
+            {walletClient && <button onClick={mintTokens}>Mint Tokens</button>}
 
             <br/>
-            {walletClient && <button onClick={approveToken}>Approve Tokens</button>}
-            <input type="text" value={enteredAmount} onChange={handleAmountChange} placeholder='Enter Amount' />
-            <br/>
+            {/* {walletClient && <button onClick={approveToken}>Approve Tokens</button>} */}
+            {/* <input id="amountInput" type="text" min="1" value={enteredAmount} onChange={handleAmountChange} onKeyDown={(event) => {
+              if (event.key === '-') {
+                event.preventDefault();
+                  }
+                }} 
+                placeholder='Enter Amount' 
+                style={{ color: 'black', backgroundColor: 'darkgray' }}
+                />
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+   
+                <button 
+                id="submitButton"
+                  style={{
+                    border: '1px solid black',  
+                    padding: '5px 10px',       
+                    borderRadius: '5px',     
+                  }}
+                  onClick={approveToken}
+                  >Submit</button> */}
+       
             {/* <input type="text" value={amount} onChange={handleAmountChange} /> */}
          
-            <br/>
-            {/* {walletClient && <button onClick={deposit}>Deposit Tokens</button>} */}
-         
-            <br/>
-         
-            {/* {walletClient && <button onClick={withdraw}>Withdraw Tokens</button>} */}
+            {walletClient && <button onClick={deposit}>Deposit Tokens</button>}
+           
+            {walletClient && <button onClick={withdraw}>Withdraw Tokens</button>}
           </div>
         );
 };

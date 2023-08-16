@@ -3,7 +3,7 @@
 import "@rainbow-me/rainbowkit/styles.css";
 
 import { Chain, ConnectButton, getDefaultWallets } from "@rainbow-me/rainbowkit";
-import { WagmiConfig, configureChains, createConfig } from "wagmi";
+import { WagmiConfig, configureChains, createConfig, mainnet } from "wagmi";
 
 import IsMounted from "./components/isMounted";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
@@ -19,27 +19,30 @@ import { publicProvider } from "wagmi/providers/public";
 //   );
 
 
-// const mumbaiPolygonTestnet: Chain = {
-//   id: 80001, // This is the chain ID for Mumbai Polygon testnet
-//   name: 'Mumbai',
-//   network: 'polygon',
-
-//   iconBackground: '#fff',
-//   nativeCurrency: {
-//     decimals: 18,
-//     name: 'MATIC',
-//     symbol: 'MATIC',
-//   },
-//   rpcUrls: {
-//     default: {
-//       http: ['https://rpc-mumbai.maticvigil.com/'],
-//     },
-//   },
-//   blockExplorers: {
-//     default: { name: 'Mumbai Explorer', url: 'https://mumbai-explorer.matic.today' },
-//   },
-//   testnet: true,
-// };
+const mumbaiPolygonTestnet: Chain = {
+  id: 80001, // This is the chain ID for Mumbai Polygon testnet
+  name: 'Mumbai',
+  network: 'polygon',
+  iconUrl: 'https://example.com/icon.svg',
+  iconBackground: '#fff',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'MATIC',
+    symbol: 'MATIC',
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://rpc-mumbai.maticvigil.com/'],
+    },
+    public: {
+      http: ['https://rpc-mumbai.maticvigil.com/'],
+    },
+  },
+  blockExplorers: {
+    default: { name: 'Mumbai Explorer', url: 'https://mumbai-explorer.matic.today' },
+  },
+  testnet: true,
+};
 
 const { chains, publicClient } = configureChains(
   [ polygonMumbai], 
@@ -47,9 +50,14 @@ const { chains, publicClient } = configureChains(
     jsonRpcProvider({
       rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }),
     }),
+publicProvider(),
   ]
 );
 
+// const { chains, publicClient } = configureChains(
+//   [mumbaiPolygonTestnet],
+//   [publicProvider()]
+// );
 
   const { connectors } = getDefaultWallets({
     appName: "My RainbowKit App",
@@ -59,7 +67,7 @@ const { chains, publicClient } = configureChains(
   const wagmiConfig = createConfig({
     autoConnect: true,
     connectors,
-    publicClient,
+    publicClient: publicClient({chainId: 80001})
   });
   
   function Wallet() {
@@ -68,7 +76,7 @@ const { chains, publicClient } = configureChains(
     return (
       <>
        <WagmiConfig config={wagmiConfig}>
-          <RainbowKitProvider chains={chains}>
+          <RainbowKitProvider chains={chains} initialChain={mainnet}>
             <div>
                 <ConnectButton />
             </div>
