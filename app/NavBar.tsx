@@ -4,9 +4,9 @@ import '../app/globals.css'
 
 import { Chain, ConnectButton, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { Container, Navbar } from "react-bootstrap";
-import { WagmiConfig, configureChains, createConfig } from 'wagmi';
+import { WagmiConfig, createConfig } from 'wagmi';
 import { bsc, bscTestnet, goerli, mainnet, polygon } from "wagmi/chains";
-import { connectors, getRainbowKitProvider, mumbaiPolygonTestnet, wagmiConfig } from "./rainbowKit"
+import { chains, connectors, getRainbowKitProvider, mumbaiPolygonTestnet, wagmiConfig } from "./rainbowKit"
 
 import { BsExclude } from "react-icons/bs";
 import IsMounted from "./components/isMounted";
@@ -16,23 +16,7 @@ import layout from './layout';
 import { publicProvider } from "wagmi/providers/public";
 import { useEffect } from "react";
 
-// const { chains, publicClient } = configureChains(
-//     [mainnet, polygon, goerli],
-//     [publicProvider()]
-//   );
-//   const { connectors } = getDefaultWallets({
-//     appName: "My RainbowKit App",
-//     projectId: "79d53986ece4f57a9937de248cef5af6",
-//     chains,
-//   });
-//   const wagmiConfig = createConfig({
-//     autoConnect: true,
-//     connectors,
-//     publicClient,
-//   });
-
-
-  const ApplyCustomFont = () => {
+const ApplyCustomFont = () => {
     useEffect(() => {
       const style = document.createElement('style');
       style.innerHTML = `
@@ -56,7 +40,7 @@ import { useEffect } from "react";
   const RainbowKitConnectWrapper: React.FC<React.PropsWithChildren<{}>>  = ({ children }) => {
     return (
       <WagmiConfig config={wagmiConfig}>
-        <RainbowKitProvider chains={[mumbaiPolygonTestnet]}>
+        <RainbowKitProvider chains={chains}>
           {children}
         </RainbowKitProvider>
       </WagmiConfig>
@@ -67,7 +51,6 @@ export default function NavBar({ chains, wagmiConfig }: { chains: Chain[], wagmi
     const mounted = IsMounted();
     if (!mounted) return;
 
-    
     return (
         <>
           <Navbar className="py-3" style={{ backgroundColor: "#0c030f", borderBottom: "2px solid #f310e1", fontSize: "1.9rem" }} bg="light" variant="light" sticky="top">
