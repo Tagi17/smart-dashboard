@@ -44,7 +44,7 @@ const mumbaiPolygonTestnet: Chain = {
   testnet: true,
 };
 
-const { chains, publicClient } = configureChains(
+const { chains, publicClient, webSocketPublicClient } = configureChains(
   [ polygonMumbai], 
   [
     jsonRpcProvider({
@@ -53,22 +53,29 @@ const { chains, publicClient } = configureChains(
 publicProvider(),
   ]
 );
+const { connectors } = getDefaultWallets({
+  appName: "Smart-Dashboard",
+  projectId: "79d53986ece4f57a9937de248cef5af6",
+  chains,
+});
+
+export const wagmiConfig = createConfig({
+  autoConnect: true,
+  connectors,
+  publicClient: publicClient({chainId: 80001}),
+  webSocketPublicClient,
+});
 
 // const { chains, publicClient } = configureChains(
 //   [mumbaiPolygonTestnet],
 //   [publicProvider()]
 // );
 
-  const { connectors } = getDefaultWallets({
-    appName: "My RainbowKit App",
-    projectId: "79d53986ece4f57a9937de248cef5af6",
-    chains,
-  });
-  const wagmiConfig = createConfig({
-    autoConnect: true,
-    connectors,
-    publicClient: publicClient({chainId: 80001})
-  });
+  // const wagmiConfig = createConfig({
+  //   autoConnect: true,
+  //   connectors,
+  //   publicClient: publicClient({chainId: 80001})
+  // });
   
   function Wallet() {
     const mounted = IsMounted();

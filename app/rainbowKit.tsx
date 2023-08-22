@@ -67,6 +67,7 @@ export const mumbaiPolygonTestnet: Chain = {
 };
 
 
+
 export const { publicClient, webSocketPublicClient } = configureChains([mumbaiPolygonTestnet], [publicProvider()]);
 
 export const { connectors } = getDefaultWallets({

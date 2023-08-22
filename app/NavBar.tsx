@@ -2,8 +2,9 @@
 
 import '../app/globals.css'
 
-import { Chain, ConnectButton, darkTheme } from "@rainbow-me/rainbowkit";
+import { Chain, ConnectButton, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { Container, Navbar } from "react-bootstrap";
+import { WagmiConfig, configureChains, createConfig } from 'wagmi';
 import { bsc, bscTestnet, goerli, mainnet, polygon } from "wagmi/chains";
 import { connectors, getRainbowKitProvider, mumbaiPolygonTestnet, wagmiConfig } from "./rainbowKit"
 
@@ -51,10 +52,21 @@ import { useEffect } from "react";
     return null;
   };
 
-
+  
+  const RainbowKitConnectWrapper: React.FC<React.PropsWithChildren<{}>>  = ({ children }) => {
+    return (
+      <WagmiConfig config={wagmiConfig}>
+        <RainbowKitProvider chains={[mumbaiPolygonTestnet]}>
+          {children}
+        </RainbowKitProvider>
+      </WagmiConfig>
+    );
+  };
+  
 export default function NavBar({ chains, wagmiConfig }: { chains: Chain[], wagmiConfig: any }) {
     const mounted = IsMounted();
     if (!mounted) return;
+
     
     return (
         <>
@@ -68,7 +80,9 @@ export default function NavBar({ chains, wagmiConfig }: { chains: Chain[], wagmi
                 </div>
                 <div className="col-span-1 flex justify-end">
                     <div className="wallet-button">
-                        <ConnectButton/>
+                    <RainbowKitConnectWrapper>
+                      <ConnectButton />
+                    </RainbowKitConnectWrapper>
                     </div>
                 </div>
             </div>
