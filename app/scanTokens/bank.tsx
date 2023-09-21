@@ -1,5 +1,7 @@
 'use client'
 
+import '/app/globals.css'
+
 import {
   PublicClient,
   createPublicClient,
@@ -11,10 +13,11 @@ import {
   parseEther,
   webSocket
 } from 'viem'
+import React, { useEffect, useRef, useState } from 'react';
 import { bankConfig, tokenConfig } from './abi'
 import { goerli, mainnet, polygonMumbai } from 'viem/chains'
-import { useEffect, useRef, useState } from 'react';
 
+import { StringLiteral } from 'typescript';
 import { ethers } from 'ethers';
 import { parse } from 'path';
 
@@ -23,11 +26,25 @@ declare global {
       ethereum: any;
     }
   }
-  
+// interface WalletClientType {
+//   writeContract: (params: ContractParams) => Promise<string>;
+//   getAddresses: () => Promise<string[]>;
+// }
+
+// interface ContractParams{
+//   address: `0x${string}`;
+//   abi: AbiType;
+//   functionName: string;
+//   account: string;
+//   args: any[]
+// }
+// type AbiType = any[];
+
 
 export const GetAddress: React.FC = () => {
-  const [userAddy, setAddress] = useState<string>('');
+  const [userAddy, setAddress] = useState<string | null>(null);
   const [walletClient, setWalletClient] = useState<any>(null);
+  const [walletClientInitialized, setWalletClientInitialized] = useState(false);
   const [hash, setHash] = useState<string>('');
   const [enteredAmount, setEnteredAmount] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -37,19 +54,20 @@ export const GetAddress: React.FC = () => {
   
   const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
-    setEnteredAmount(inputValue);
+    const numericValue = parseFloat(inputValue);
+    if(!isNaN(numericValue)) {
+      setEnteredAmount(inputValue.toString());
+    } else{
+      setEnteredAmount('');
+    }
   }
   
-  const approveToken = async () => {
+  const ApproveToken = async () => {
     try{
       if(!walletClient){
         console.error('Wallet client not initialized.');
         return;
       }
-    }
-    catch (error) {
-      console.error('Error approving tokens:', error);
-    }
     const approveHash = await walletClient.writeContract({
       address: '0x02BdEE024e555Df8764F0157dCd2f64e121Bc769',
       abi: tokenConfig.abi,
@@ -57,7 +75,10 @@ export const GetAddress: React.FC = () => {
       account: userAddy,
       args: [bankAddress, enteredAmount]  
     });
+  }  catch (error) {
+    console.error('Error approving tokens:', error);
   }
+}
 
   const mintTokens = async () => {
     try {
@@ -66,23 +87,22 @@ export const GetAddress: React.FC = () => {
         return;
       }
 
-  const mintHash = await walletClient.writeContract({
-    address: '0x02BdEE024e555Df8764F0157dCd2f64e121Bc769',
-    abi: tokenConfig.abi,
-    functionName: 'mint',
-    account: userAddy,
-    args: [userAddy]
-  });
+    const mintHash = await walletClient.writeContract({
+      address: '0x02BdEE024e555Df8764F0157dCd2f64e121Bc769',
+      abi: tokenConfig.abi,
+      functionName: 'mint',
+      account: userAddy,
+      args: [userAddy]
+    });
 
-  console.log('Transaction hash:', mintHash);
-  setHash(mintHash);
-    } catch (error) {
-      console.error('Error minting tokens:', error);
-    }
-  };
+        console.log('Transaction hash:', mintHash);
+        setHash(mintHash);
+      } catch (error) {
+        console.error('Error minting tokens:', error);
+      }
+    };
 
-  const deposit = async () => {
-
+    const deposit = async () => {
       if (!walletClient) {
         console.error('Wallet client not initialized.');
         return;
@@ -95,9 +115,13 @@ export const GetAddress: React.FC = () => {
         account: userAddy,
         args: [parseEther('10000')]
         });
-  }
+    }
 
   const withdraw = async () => {
+    if (!walletClient) {
+      console.error('Wallet client not initialized.');
+      return;
+    }
 
     const withdrawHash = await walletClient.writeContract({
       address: bankAddress,
@@ -106,79 +130,121 @@ export const GetAddress: React.FC = () => {
       account: userAddy,
       args: [parseEther('10000')]
       });
-}
+    }
+  
+    const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
-    document.addEventListener('DOMContentLoaded', async () => {
-      const amountInput = document.getElementById('amountInput') as HTMLInputElement;
-      const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
+    const interval = setInterval(() => {
+      setCount(prevCount => prevCount + 1);
+  }, 5000);
+  
+  
+    const initWalletClient = async () => {
+      try {
+        const walletClient = createWalletClient({
+          chain: polygonMumbai,
+          transport: custom(window.ethereum)
+        });    
+        console.log('Wallet client initialized:', walletClient);
+        setWalletClient(walletClient);
+        setWalletClientInitialized(true);
+        const [tempAddy] = await walletClient.getAddresses();
+          
+            setAddress(tempAddy);
+            console.log('Address:', tempAddy);
+            
+            return () => {
+              clearInterval(interval);
+          };
+      } catch (error) {
+        console.error('Error initializing wallet client:', error);
+      }
+    };
+    initWalletClient();
+  }, []);
+
+
+  useEffect(() => {
     
-      amountInput.addEventListener('input', (event) => {
+    const fetchAddress = async () => {
+      console.log('Fetching address...'); 
+      if(walletClient){
+       
+          const [tempAddy] = await walletClient.getAddresses();
+          if(tempAddy) {
+            setAddress(tempAddy);
+            console.log('Address:', tempAddy);
+          } else {
+              setAddress('');
+          }
+      }
+    };
+    fetchAddress();
+      const handleInput = (event: InputEvent) => {
+        const amountInput = event.target as HTMLInputElement;
         amountInput.value = amountInput.value.replace(/[^0-9]/g, '');
-      });
-  
-      submitButton.addEventListener('click', async () => {
+      };
+      const handleButtonClick = () => {
+        const amountInput = document.getElementById('amountInput') as HTMLInputElement;
         const enteredAmount = parseInt(amountInput.value);
-  
+      
         if (isNaN(enteredAmount) || enteredAmount <= 0) {
           alert('Please enter a valid amount greater than 0');
           return;
         }
-      const publicClient = createPublicClient({
-          chain: polygonMumbai,
-          transport: webSocket('wss://polygon-mumbai.g.alchemy.com/v2/ZDgTfnpUmVWbI4_Um77CIOv7FhDDgxBP')
-        })
-      const client  = createWalletClient({
-          chain: polygonMumbai,
-          transport: custom(window.ethereum)
-        });    
-        setWalletClient(client);
-          
-    (async () => {
-      var [tempAddy] = await walletClient?.getAddresses();
-      setAddress(tempAddy);
-      console.log('Address:', userAddy);
+      };
+      
+        const amountInput = document.getElementById('amountInput') as HTMLInputElement;
+        const submitButton = document.getElementById('submitButton') as HTMLButtonElement;
+        if (amountInput && submitButton) {
+          amountInput.addEventListener('input', handleInput as EventListener);
+          submitButton.addEventListener('click', handleButtonClick);
+        }
+       return () => {
+        if (amountInput ){
+          amountInput.removeEventListener('input', handleInput as EventListener);
+        }
+        if (submitButton) {
+          submitButton.removeEventListener('click', handleButtonClick);
+        }
+      }
+      
+  }, [walletClient]);
 
-    })();
-
-  });
-  });
-  }, [userAddy, walletClient]);
-    
         return (
           <div>
+            {userAddy ? ( 
+            <>
             Your address: {userAddy}
+            <br/>
             {hash && <p>Transaction Hash: {hash}</p>}
-            {walletClient && <button onClick={mintTokens}>Mint Tokens</button>}
+            <br/>
+          {walletClient && (
+            <>
+            <div className='token'>
+
+                <button onClick={mintTokens} className="button">Mint Tokens</button>
+                <br/>
+                <button onClick={deposit} className="button">Deposit Tokens</button>
+                <br/>
+                <button onClick={withdraw} className="button">Withdraw Tokens</button>
+          
+            </div>
+            </>
+          )}
 
             <br/>
-            {/* {walletClient && <button onClick={approveToken}>Approve Tokens</button>} */}
-            {/* <input id="amountInput" type="text" min="1" value={enteredAmount} onChange={handleAmountChange} onKeyDown={(event) => {
-              if (event.key === '-') {
-                event.preventDefault();
-                  }
-                }} 
-                placeholder='Enter Amount' 
-                style={{ color: 'black', backgroundColor: 'darkgray' }}
-                />
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-   
-                <button 
-                id="submitButton"
-                  style={{
-                    border: '1px solid black',  
-                    padding: '5px 10px',       
-                    borderRadius: '5px',     
-                  }}
-                  onClick={approveToken}
-                  >Submit</button> */}
-       
-            {/* <input type="text" value={amount} onChange={handleAmountChange} /> */}
-         
-            {walletClient && <button onClick={deposit}>Deposit Tokens</button>}
-           
-            {walletClient && <button onClick={withdraw}>Withdraw Tokens</button>}
-          </div>
-        );
+            <div className="inputContainer">
+            <input type="number" value={enteredAmount} onChange={handleAmountChange} placeholder='Enter Amount' className='inputTextColor'/>
+            {walletClient && <button onClick={ApproveToken} className='submitButton'>Submit</button>}
+            <br/>
+            </div>
+            </>
+          ):(
+              <p>Loading address...</p>
+            )}
+            </div>
+          );
 };
 

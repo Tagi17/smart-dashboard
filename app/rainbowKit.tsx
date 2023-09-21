@@ -4,9 +4,11 @@ import '../app/globals.css'
 import '@rainbow-me/rainbowkit/styles.css';
 
 import { ConnectButton, darkTheme } from "@rainbow-me/rainbowkit";
+import { GetSiweMessageOptions, RainbowKitSiweNextAuthProvider } from '@rainbow-me/rainbowkit-siwe-next-auth';
 import {
   RainbowKitProvider,
   connectorsForWallets,
+  createAuthenticationAdapter,
   getDefaultWallets,
 } from '@rainbow-me/rainbowkit';
 import { WagmiConfig, configureChains, createConfig } from 'wagmi';
@@ -14,6 +16,9 @@ import { goerli, mainnet, polygon } from "wagmi/chains";
 
 import type { AppProps } from 'next/app';
 import { Chain } from 'wagmi/chains';
+import type { Session } from 'next-auth';
+import { SessionProvider } from 'next-auth/react';
+import { SiweMessage } from 'siwe';
 import { publicProvider } from 'wagmi/providers/public';
 
 export const mumbaiPolygonTestnet: Chain = {
@@ -61,15 +66,22 @@ export const wagmiConfig = createConfig({
   webSocketPublicClient,
 });
 
-export function getRainbowKitProvider (Component: React.ComponentType<AppProps["Component"]>, pageProps: AppProps["pageProps"]) {
-  // const chains = [mumbaiPolygonTestnet];
+const getSiweMessageOptions: GetSiweMessageOptions = () => ({
+  statement: 'Sign in to my RainbowKit app',
+});
+
+export function getRainbowKitProvider (Component: React.ComponentType<AppProps["Component"]>, pageProps: AppProps["pageProps"], session: Session | undefined) {
 
   return (
     <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider chains={chains}>
-        <ConnectButton />
-        <Component {...pageProps} chains={chains} wagmiConfig={wagmiConfig} />
-      </RainbowKitProvider>
+      <SessionProvider refetchInterval={0} session={pageProps.session}>
+        <RainbowKitSiweNextAuthProvider getSiweMessageOptions={getSiweMessageOptions}>
+          <RainbowKitProvider chains={chains}>
+            <ConnectButton />
+            <Component {...pageProps} chains={chains} wagmiConfig={wagmiConfig} session={session}/>
+          </RainbowKitProvider>
+        </RainbowKitSiweNextAuthProvider>
+      </SessionProvider>
     </WagmiConfig>
   );
 }
