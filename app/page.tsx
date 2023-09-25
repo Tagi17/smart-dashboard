@@ -18,11 +18,11 @@ import AnimatedBanner from './animatedBanner';
 import { Button } from "@/components/ui/button"
 import { GetAddress } from "./scanTokens/bank";
 import Image from 'next/image';
-import { MainNav } from "@/components/main-nav"
-import { Overview } from "@/app/dashboard/components/overview"
-import { Search } from "@/app/dashboard/components/search"
-import TeamSwitcher from "@/app/dashboard/components/team-switcher"
-import { UserNav } from "@/app/dashboard/components/user-nav"
+import { MainNav } from "@/components/ui/main-nav"
+import { Overview } from "@/components/ui/overview"
+import { Search } from "@/components/ui/search"
+import TeamSwitcher from "@/components/ui/team-switcher"
+import { UserNav } from "@/components/ui/user-nav"
 import { WalletFunction } from "./ethersScan";
 import dynamic from 'next/dynamic';
 import layout from './layout';
