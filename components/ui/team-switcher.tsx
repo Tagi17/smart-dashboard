@@ -6,7 +6,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/apps/www/registry/new-york/ui/avatar"
+} from "@/www/registry/new-york/ui/avatar"
 import {
   CaretSortIcon,
   CheckIcon,
@@ -20,7 +20,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/apps/www/registry/new-york/ui/command"
+} from "@/www/registry/new-york/ui/command"
 import {
   Dialog,
   DialogContent,
@@ -29,23 +29,23 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/new-york/ui/dialog"
+} from "@/www/registry/new-york/ui/dialog"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/registry/new-york/ui/popover"
+} from "@/www/registry/new-york/ui/popover"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/new-york/ui/select"
+} from "@/www/registry/new-york/ui/select"
 
-import { Button } from "@/registry/new-york/ui/button"
-import { Input } from "@/registry/new-york/ui/input"
-import { Label } from "@/registry/new-york/ui/label"
+import { Button } from "@/www/registry/new-york/ui/button"
+import { Input } from "@/www/registry/new-york/ui/input"
+import { Label } from "@/www/registry/new-york/ui/label"
 import { cn } from "@/lib/utils"
 
 const groups = [

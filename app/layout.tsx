@@ -3,7 +3,9 @@ import './globals.css'
 import ApplyCustomFont from './clientFont';
 import { Container } from '@/app/components/bootstrap';
 import Head from 'next/head';
+import ModeToggle from '@/www/registry/default/example/mode-toggle';
 import NavBar from './NavBar'
+import { ThemeProvider } from './components/theme-provider';
 import css from 'styled-jsx/css';
 
 export const metadata = {
@@ -21,11 +23,20 @@ export default function RootLayout({
     <html lang="en">
        <body>
         <ApplyCustomFont />
-        <NavBar /> 
+        {/* <NavBar />  */}
           <main>
-            <Container> 
+            <ThemeProvider
+             attribute="class"
+             defaultTheme="system"
+             enableSystem
+             disableTransitionOnChange
+           >
+              <Container> 
+                <ModeToggle />
+                
                 {children}
               </Container>
+            </ThemeProvider>
           </main>
       </body>
     </html>
