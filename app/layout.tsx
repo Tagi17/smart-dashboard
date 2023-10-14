@@ -6,6 +6,7 @@ import Head from 'next/head';
 import ModeToggle from '@/www/registry/default/example/mode-toggle';
 import NavBar from './NavBar'
 import { ThemeProvider } from './components/theme-provider';
+import WalletButton from './connectWallet';
 import css from 'styled-jsx/css';
 
 export const metadata = {
@@ -33,7 +34,7 @@ export default function RootLayout({
            >
               <Container> 
                 <ModeToggle />
-                
+                  <WalletButton chains={[]} wagmiConfig={undefined} />
                 {children}
               </Container>
             </ThemeProvider>
