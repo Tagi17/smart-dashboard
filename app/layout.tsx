@@ -2,10 +2,11 @@ import './globals.css'
 
 import ApplyCustomFont from './clientFont';
 import { Container } from '@/app/components/bootstrap';
+// import DarkModeToggle from '../components/ui/dark-mode-toggle';
 import Head from 'next/head';
 import ModeToggle from '@/www/registry/default/example/mode-toggle';
 import NavBar from './NavBar'
-import { ThemeProvider } from './components/theme-provider';
+import { ThemeProvider } from '../components/ui/theme-provider';
 import WalletButton from './connectWallet';
 import css from 'styled-jsx/css';
 
@@ -28,15 +29,15 @@ export default function RootLayout({
           <main>
             <ThemeProvider
              attribute="class"
-             defaultTheme="system"
+             defaultTheme="dark"
              enableSystem
              disableTransitionOnChange
            >
-              <Container> 
+              {/* <Container>  */}
                 <ModeToggle />
                   <WalletButton chains={[]} wagmiConfig={undefined} />
                 {children}
-              </Container>
+             {/* ` </Container>` */}
             </ThemeProvider>
           </main>
       </body>

@@ -7,14 +7,15 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from ".././ui/dropdown-menu";
-import { Moon, Sun } from "lucide-react"
+} from "./dropdown-menu";
+import { Moon, Sun } from "lucide-react";
 
-import { Button } from ".././ui/button";
-import { useTheme } from "next-themes"
+import { Button } from "./button";
+import { Theme } from "../../lib/utils";
+import { useTheme } from "next-themes";
 
-export default function ModeToggle() {
-  const { setTheme } = useTheme()
+export default function DarkModeToggle() {
+  const { setTheme } = useTheme();
 
   return (
     <DropdownMenu>
@@ -26,16 +27,16 @@ export default function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
+        <DropdownMenuItem onClick={() => setTheme(Theme.LIGHT)}>
           Light
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
+        <DropdownMenuItem onClick={() => setTheme(Theme.DARK)}>
           Dark
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
+        <DropdownMenuItem onClick={() => setTheme(Theme.SYSTEM)}>
           System
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
