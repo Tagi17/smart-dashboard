@@ -16,6 +16,12 @@ const RainbowKitConnectWrapper: React.FC<React.PropsWithChildren<{}>>  = ({ chil
     );
   };
 
+  export interface WalletButtonProps {
+    chains: Chain[];
+    wagmiConfig: any;
+    className?: string; // Add the className prop
+  }
+
 export default function WalletButton ({ chains, wagmiConfig }: { chains: Chain[], wagmiConfig: any }) {
     const mounted = IsMounted();
     if (!mounted) return;

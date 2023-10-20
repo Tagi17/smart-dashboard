@@ -34,8 +34,8 @@ export default function RootLayout({
              disableTransitionOnChange
            >
               {/* <Container>  */}
-                <ModeToggle />
-                  <WalletButton chains={[]} wagmiConfig={undefined} />
+                {/* <ModeToggle /> */}
+              
                 {children}
              {/* ` </Container>` */}
             </ThemeProvider>

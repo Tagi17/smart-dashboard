@@ -52,6 +52,7 @@ export const GetAddress: React.FC = () => {
   const tokenAddress = "0x02BdEE024e555Df8764F0157dCd2f64e121Bc769";
   const bankAddress = "0x0a6ab0B97550436D299F385572C6014Ccf4D55A2";
   
+  
   const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     const numericValue = parseFloat(inputValue);
@@ -216,7 +217,7 @@ export const GetAddress: React.FC = () => {
           <div>
             {userAddy ? ( 
             <>
-            Your address: {userAddy}
+            Your address: {userAddy} 
             <br/>
             {hash && <p>Transaction Hash: {hash}</p>}
             <br/>
