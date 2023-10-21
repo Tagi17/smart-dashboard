@@ -18,6 +18,7 @@ import {
 import AnimatedBanner from './animatedBanner';
 import { Button } from "@/components/ui/button"
 import { GetAddress } from "./scanTokens/bank";
+import {GetData} from './scanTokens/polygonScan'
 import Image from 'next/image';
 import { MainNav } from "@/components/ui/main-nav"
 import ModeToggle from '@/www/registry/default/example/mode-toggle';
@@ -31,6 +32,8 @@ import dynamic from 'next/dynamic';
 import layout from './layout';
 
 function Page() {
+
+   
   return (
     <>
       <div>
@@ -120,7 +123,8 @@ function Page() {
                   <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium">
-                        Total Transactions 
+                        Total Transactions
+                        
                       </CardTitle>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +142,9 @@ function Page() {
                       </svg>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-2xl font-bold">130</div>
+                      <div className="text-2xl font-bold">
+                        <GetData />
+                      </div>
                     </CardContent>
                   </Card>
                   <Card>
