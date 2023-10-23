@@ -56,16 +56,17 @@ export const GetData = () => {
       {apiData && (
         <div>
           <p>{apiData.result.length}</p>
-        <div>
-          {apiData.result.map((entry: AddressData, index: number) => (
-            <div key={index}>
-              {/* Address: {entry.address} */}
-              <br/>
-              {entry.txCount}
-            </div>
-          ))}
           </div>
-        </div>
+        // <div>
+        //   {apiData.result.map((entry: AddressData, index: number) => (
+        //     <div key={index}>
+        //       {/* Address: {entry.address} */}
+        //       <br/>
+        //       {entry.txCount}
+        //     </div>
+        //   ))}
+        //   </div>
+        // </div> use these divs to make the shadcn box bigger
       )}
     </div>
   );

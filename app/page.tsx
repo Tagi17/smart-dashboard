@@ -18,7 +18,8 @@ import {
 import AnimatedBanner from './animatedBanner';
 import { Button } from "@/components/ui/button"
 import { GetAddress } from "./scanTokens/bank";
-import {GetData} from './scanTokens/polygonScan'
+import {GetData} from './scanTokens/polygonScanTxAmt'
+import {GetWalletAmount} from './scanTokens/polygonwalletAmount'
 import Image from 'next/image';
 import { MainNav } from "@/components/ui/main-nav"
 import ModeToggle from '@/www/registry/default/example/mode-toggle';
@@ -67,7 +68,7 @@ function Page() {
               <MainNav className="mx-6" />
               <div className="ml-auto flex items-center space-x-4">
                 <Search />
-                <WalletButton className="walletButton" chains={[]} wagmiConfig={undefined} />
+                <WalletButton  chains={[]} wagmiConfig={undefined} />
                 <UserNav />
               </div>
             </div>
@@ -165,7 +166,9 @@ function Page() {
                       </svg>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-2xl font-bold">+12,234</div>
+                      <div className="text-2xl font-bold">
+                        <GetWalletAmount/>
+                      </div>
                     </CardContent>
                 </Card>
               </div>
