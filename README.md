@@ -19,7 +19,7 @@ This project aims to help users monitor their wallet's content, visualize their 
 * **Next.js:** A React framework that allows for server-side rendering, which is ideal for building dynamic web applications.
 * **Typescript:** A statically-typed superset of JavaScript, enhancing code robustness.
 * **Tailwind CSS:** A utility-first CSS framework for fast and responsive web design.
-* **Shadcn, a UI library using components from Radix**
+* **Shadcn:** a UI library using components from Radix
 
 ## **Installation**
 
