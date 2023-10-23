@@ -1,7 +1,7 @@
 **Project Name: Web3 Wallet Dashboard**
 ‧₊˚❀༉‧₊˚.
 
-**Overview**☾ ⋆*･ﾟ:⋆*･ﾟ
+**Overview** ☾ ⋆*･ﾟ:⋆*･ﾟ
 
 Web3 Wallet Dashboard is a web application designed to provide users with a comprehensive dashboard for managing their crypto assets and interacting with the blockchain. 
 This project aims to help users monitor their wallet's content, visualize their crypto portfolio, and access DeFi applications seamlessly.
@@ -14,7 +14,7 @@ Crypto Portfolio: The application will showcase the user's various cryptocurrenc
 Price Charts: Users can view price charts to track the historical performance of their cryptocurrencies.
 DeFi Integration: Integration with DeFi platforms like Uniswap and Lido to provide insights into liquidity pools and investments.
 
-。* ​° ✧ ☆☆**Tech Stack**☆☆ ✧ ​° * 。
+。* ​° ✧ ☆☆ **Tech Stack** ☆☆ ✧ ​° * 。
 
 Next.js: A React framework that allows for server-side rendering, which is ideal for building dynamic web applications.
 Typescript: A statically-typed superset of JavaScript, enhancing code robustness.
