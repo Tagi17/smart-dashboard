@@ -6,7 +6,7 @@
 * **Web3 Wallet Dashboard** is a web application designed to provide users with a comprehensive dashboard for managing their crypto assets and interacting with the blockchain. 
 This project aims to help users monitor their wallet's content, visualize their crypto portfolio, and access DeFi applications seamlessly.
 
-## ·.· ˚ * ✧ **Features**✧ * ˚ ·.·
+## ·.· ˚ * ✧ **Features** ✧ * ˚ ·.·
 
 * **User Wallet Integration:** Users can connect their web3 wallets (e.g., MetaMask) to access their blockchain accounts.
 * **Personalized Dashboard:** Once connected, the dashboard will display the user's wallet information, such as wallet address and balance.
