@@ -21,7 +21,7 @@ This project aims to help users monitor their wallet's content, visualize their 
 * **Tailwind CSS:** A utility-first CSS framework for fast and responsive web design.
 * **Shadcn:** a UI library using components from Radix
 
-## 。* ​° ✧ ☆☆ **Web3 Tech Stack** ☆☆ ✧ ​° * 。
+## 。* ​° ✧✧ ☆ **Web3 Tech Stack** ☆ ✧✧ ​° * 。
 
 * **Viem:** Responsible for interacting with smart contract functions to display on the front end
 * **Wagmi:** In charge of the wallet connection state and accessing account data 
