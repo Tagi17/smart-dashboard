@@ -1,4 +1,4 @@
-# **Project Name: Web3 Wallet Dashboard**
+# **Web3 Wallet Dashboard**
 ‧₊˚❀༉‧₊˚.
 
 ## **Overview** ☾ ⋆*･ﾟ:⋆*･ﾟ
