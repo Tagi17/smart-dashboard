@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import {GetRainbowKitProvider, wagmiConfig} from "./rainbowKit";
 import {
   Tabs,
   TabsContent,
@@ -17,6 +18,7 @@ import {
 
 import AnimatedBanner from './animatedBanner';
 import { Button } from "@/components/ui/button"
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { GetAddress } from "./scanTokens/bank";
 import {GetData} from './scanTokens/polygonScanTxAmt'
 import {GetWalletAmount} from './scanTokens/polygonwalletAmount'
@@ -27,14 +29,9 @@ import { Overview } from "@/components/ui/overview"
 import { Search } from "@/components/ui/search"
 import TeamSwitcher from "@/components/ui/team-switcher"
 import { UserNav } from "@/components/ui/user-nav"
-import WalletButton from './connectWallet';
-import { WalletFunction } from "./ethersScan";
-import dynamic from 'next/dynamic';
-import layout from './layout';
 
 function Page() {
 
-   
   return (
     <>
       <div>
@@ -68,7 +65,9 @@ function Page() {
               <MainNav className="mx-6" />
               <div className="ml-auto flex items-center space-x-4">
                 <Search />
-                <WalletButton  chains={[]} wagmiConfig={undefined} />
+                <GetRainbowKitProvider wagmiConfig={wagmiConfig}>
+                  <ConnectButton />
+                </GetRainbowKitProvider>
                 <UserNav />
               </div>
             </div>

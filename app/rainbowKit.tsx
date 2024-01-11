@@ -4,7 +4,6 @@ import '../app/globals.css'
 import '@rainbow-me/rainbowkit/styles.css';
 
 import { ConnectButton, darkTheme } from "@rainbow-me/rainbowkit";
-import { GetSiweMessageOptions, RainbowKitSiweNextAuthProvider } from '@rainbow-me/rainbowkit-siwe-next-auth';
 import {
   RainbowKitProvider,
   connectorsForWallets,
@@ -16,12 +15,14 @@ import { goerli, mainnet, polygon } from "wagmi/chains";
 
 import type { AppProps } from 'next/app';
 import { Chain } from 'wagmi/chains';
-import type { Session } from 'next-auth';
-import { SessionProvider } from 'next-auth/react';
-import { SiweMessage } from 'siwe';
 import { publicProvider } from 'wagmi/providers/public';
+import { useAccount } from 'wagmi';
 
-export const mumbaiPolygonTestnet: Chain = {
+// interface ExtendedChain extends Chain {
+//   network?: string;
+// }
+
+export const mumbaiPolygonTestnet: Chain  = {
   id: 80001, 
   name: 'Mumbai',
   network: 'polygon',
@@ -53,9 +54,11 @@ export const chains = chainsResult.chains;
 // export const { publicClient, webSocketPublicClient } = configureChains([mumbaiPolygonTestnet], [publicProvider()]);
 export const { publicClient, webSocketPublicClient } = configureChains(chains, [publicProvider()]);
 
+const apiKey: string | undefined = process.env.NEXT_PUBLIC_RAINBOWKIT_API_KEY;
+
 export const { connectors } = getDefaultWallets({
   appName: 'Smart-Dashboard',
-  projectId: "79d53986ece4f57a9937de248cef5af6",
+  projectId: process.env.NEXT_PUBLIC_RAINBOWKIT_API_KEY as string,
   chains: chains,
 });
 
@@ -66,22 +69,20 @@ export const wagmiConfig = createConfig({
   webSocketPublicClient,
 });
 
-const getSiweMessageOptions: GetSiweMessageOptions = () => ({
-  statement: 'Sign in to my RainbowKit app',
-});
+type ProviderType = {
+  children?: React.ReactNode;
+  wagmiConfig: any; 
+};
 
-export function getRainbowKitProvider (Component: React.ComponentType<AppProps["Component"]>, pageProps: AppProps["pageProps"], session: Session | undefined) {
+export function GetRainbowKitProvider({ children }:ProviderType) {
+
+console.log("Wagmi Config:", wagmiConfig);
 
   return (
     <WagmiConfig config={wagmiConfig}>
-      <SessionProvider refetchInterval={0} session={pageProps.session}>
-        <RainbowKitSiweNextAuthProvider getSiweMessageOptions={getSiweMessageOptions}>
-          <RainbowKitProvider chains={chains}>
-            <ConnectButton />
-            <Component {...pageProps} chains={chains} wagmiConfig={wagmiConfig} session={session}/>
-          </RainbowKitProvider>
-        </RainbowKitSiweNextAuthProvider>
-      </SessionProvider>
+        <RainbowKitProvider chains={chains}>
+          {children}
+        </RainbowKitProvider>
     </WagmiConfig>
   );
 }

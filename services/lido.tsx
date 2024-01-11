@@ -1,10 +1,8 @@
 import { ChainId, Fetcher, Token } from '@uniswap/sdk';
 
-import { ethers } from 'ethers';
-
 // Detect the injected Ethereum provider (e.g., MetaMask)
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-
+// const provider = new ethers.providers.Web3Provider(window.ethereum);
+// 
 async function fetchTokenBalances() {
   // Request access to the user's accounts
   await provider.send('eth_requestAccounts', []);

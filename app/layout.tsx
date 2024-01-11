@@ -1,5 +1,7 @@
 import './globals.css'
 
+import {GetRainbowKitProvider, wagmiConfig} from './rainbowKit';
+
 import ApplyCustomFont from './clientFont';
 import { Container } from '@/app/components/bootstrap';
 // import DarkModeToggle from '../components/ui/dark-mode-toggle';
@@ -7,7 +9,6 @@ import Head from 'next/head';
 import ModeToggle from '@/www/registry/default/example/mode-toggle';
 import NavBar from './NavBar'
 import { ThemeProvider } from '../components/ui/theme-provider';
-import WalletButton from './connectWallet';
 import css from 'styled-jsx/css';
 
 export const metadata = {
@@ -27,18 +28,17 @@ export default function RootLayout({
         <ApplyCustomFont />
         {/* <NavBar />  */}
           <main>
-            <ThemeProvider
-             attribute="class"
-             defaultTheme="dark"
-             enableSystem
-             disableTransitionOnChange
-           >
-              {/* <Container>  */}
+              <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+              >
                 {/* <ModeToggle /> */}
-              
-                {children}
-             {/* ` </Container>` */}
-            </ThemeProvider>
+                  <GetRainbowKitProvider wagmiConfig={wagmiConfig}>
+                    {children}
+                  </GetRainbowKitProvider >
+              </ThemeProvider>
           </main>
       </body>
     </html>

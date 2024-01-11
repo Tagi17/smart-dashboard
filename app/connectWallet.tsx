@@ -1,11 +1,10 @@
-'use client'
-
 import { Chain, ConnectButton, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
+import { GetRainbowKitProvider, chains, connectors, mumbaiPolygonTestnet, wagmiConfig } from "./rainbowKit"
 import { WagmiConfig, createConfig } from 'wagmi';
-import { chains, connectors, getRainbowKitProvider, mumbaiPolygonTestnet, wagmiConfig } from "./rainbowKit"
 
 import IsMounted from "./components/isMounted";
 
+//was used to export into the page.tsx file to show connectwallet button but it is an unnceccesary file 
 const RainbowKitConnectWrapper: React.FC<React.PropsWithChildren<{}>>  = ({ children }) => {
     return (
       <WagmiConfig config={wagmiConfig}>
@@ -19,7 +18,7 @@ const RainbowKitConnectWrapper: React.FC<React.PropsWithChildren<{}>>  = ({ chil
   export interface WalletButtonProps {
     chains: Chain[];
     wagmiConfig: any;
-    className?: string; // Add the className prop
+    className?: string; 
   }
 
 export default function WalletButton ({ chains, wagmiConfig }: { chains: Chain[], wagmiConfig: any }) {
