@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import {ethereumTokens, polygonTokens} from '../tokenDetails';
 import { useAccount, useContractRead, useNetwork } from 'wagmi';
 
 import axios from 'axios';
