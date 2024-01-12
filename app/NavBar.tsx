@@ -4,9 +4,9 @@ import '../app/globals.css'
 
 import { Chain, ConnectButton, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { Container, Navbar } from "react-bootstrap";
+import { GetRainbowKitProvider, chains, connectors, mumbaiPolygonTestnet, wagmiConfig } from "./rainbowKit"
 import { WagmiConfig, createConfig } from 'wagmi';
 import { bsc, bscTestnet, goerli, mainnet, polygon } from "wagmi/chains";
-import { chains, connectors, getRainbowKitProvider, mumbaiPolygonTestnet, wagmiConfig } from "./rainbowKit"
 
 import { BsExclude } from "react-icons/bs";
 import IsMounted from "./components/isMounted";
