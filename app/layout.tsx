@@ -4,12 +4,12 @@ import {GetRainbowKitProvider, wagmiConfig} from './rainbowKit';
 
 import ApplyCustomFont from './clientFont';
 import { Container } from '@/app/components/bootstrap';
-// import DarkModeToggle from '../components/ui/dark-mode-toggle';
-import Head from 'next/head';
 import ModeToggle from '@/www/registry/default/example/mode-toggle';
 import NavBar from './NavBar'
 import { ThemeProvider } from '../components/ui/theme-provider';
 import css from 'styled-jsx/css';
+
+// import DarkModeToggle from '../components/ui/dark-mode-toggle';
 
 export const metadata = {
   title: 'Create Next App',
