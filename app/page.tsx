@@ -22,12 +22,13 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { GetAddress } from "./scanTokens/bank";
 import {GetData} from './scanTokens/polygonScanTxAmt'
 import {GetWalletAmount} from './scanTokens/polygonwalletAmount'
-import { MainNav } from "@/components/ui/main-nav"
-import ModeToggle from '@/www/registry/default/example/mode-toggle';
-import { Overview } from "@/components/ui/overview"
-import { Search } from "@/components/ui/search"
-import TeamSwitcher from "@/components/ui/team-switcher"
-import { UserNav } from "@/components/ui/user-nav"
+
+// import { MainNav } from "@/components/ui/main-nav"
+// import ModeToggle from '@/www/registry/default/example/mode-toggle';
+// import { Overview } from "@/components/ui/overview"
+// import { Search } from "@/components/ui/search"
+// import TeamSwitcher from "@/components/ui/team-switcher"
+// import { UserNav } from "@/components/ui/user-nav"
 
 function Page() {
 
@@ -39,35 +40,21 @@ function Page() {
         </div>
         <div className="uniswap"> 
         </div>
-        <div>
+        <div className="background">
           <div className="md:hidden">
-          {/* <Image
-            src="/examples/dashboard-light.png"
-            width={1280}
-            height={866}
-            alt="Dashboard"
-            className="block dark:hidden"
-          />
-          <Image
-            src="/examples/dashboard-dark.png"
-            width={1280}
-            height={866}
-            alt="Dashboard"
-            className="hidden dark:block"
-          /> */}
         </div>
         <div className="hidden flex-col md:flex">
           <div className="border-b">
             <div className="flex h-16 items-center px-4"> 
-            <ModeToggle />
-              <TeamSwitcher />
-              <MainNav className="mx-6" />
+            {/* <ModeToggle /> */}
+              {/* <TeamSwitcher /> */}
+              {/* <MainNav className="mx-6" /> */}
               <div className="ml-auto flex items-center space-x-4">
-                <Search />
+                {/* <Search /> */}
                 <GetRainbowKitProvider wagmiConfig={wagmiConfig}>
                   <ConnectButton />
                 </GetRainbowKitProvider>
-                <UserNav />
+                {/* <UserNav /> */}
               </div>
             </div>
           </div>
@@ -114,9 +101,6 @@ function Page() {
                     </CardHeader>
                     <CardContent>
                       <div className="text-2xl font-bold">Jason&apos;s Wallet</div>
-                      {/* <p className="text-xs text-muted-foreground">
-                        +20.1% from last month
-                      </p> */}
                     </CardContent>
                   </Card>
                   <Card>
@@ -170,7 +154,6 @@ function Page() {
                     </CardContent>
                 </Card>
               </div>
-                  
 
               <TabsContent value="overview" className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
@@ -235,7 +218,7 @@ function Page() {
                       <CardTitle>Crypto Balance</CardTitle>
                     </CardHeader>
                     <CardContent className="pl-2">
-                      <Overview />
+                      {/* <Overview /> */}
                     </CardContent>
                   </Card>
                   <Card className="col-span-3">
