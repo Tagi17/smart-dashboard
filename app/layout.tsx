@@ -5,6 +5,7 @@ import {GetRainbowKitProvider, wagmiConfig} from './rainbowKit';
 import ApplyCustomFont from './clientFont';
 import { Container } from '@/app/components/bootstrap';
 import NavBar from './NavBar'
+import { ThemeProvider } from "@/components/ui/theme-provider"
 import css from 'styled-jsx/css';
 
 // import DarkModeToggle from '../components/ui/dark-mode-toggle';
@@ -26,17 +27,17 @@ export default function RootLayout({
         <ApplyCustomFont />
         {/* <NavBar />  */}
           <main>
-              {/* <ThemeProvider
+              <ThemeProvider
               attribute="class"
               defaultTheme="dark"
               enableSystem
               disableTransitionOnChange
-              > */}
+              >
                 {/* <ModeToggle /> */}
                   <GetRainbowKitProvider wagmiConfig={wagmiConfig}>
                     {children}
                   </GetRainbowKitProvider >
-              {/* </ThemeProvider> */}
+              </ThemeProvider>
           </main>
       </body>
     </html>
