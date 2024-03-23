@@ -77,13 +77,19 @@ export const GetAddress: React.FC = () => {
   return (
     <div>
       <div className="w-44">
-        <Input type="text" onChange={handleAmountChange} placeholder="Enter Amount" />
+        <Input
+          type="text"
+          onChange={handleAmountChange}
+          placeholder="Enter Amount"
+        />
       </div>
-      <button onClick={handleClickApprove}>Approve</button>
-      <br />
-      <button onClick={handleClickMint}>Mint</button>
-      <br />
-      <button onClick={handleClickWithdraw}>Withdraw</button>
+      <div className="px-2 py-1">
+        <button onClick={handleClickApprove}>Approve</button>
+        <br />
+        <button onClick={handleClickMint}>Mint</button>
+        <br />
+        <button onClick={handleClickWithdraw}>Withdraw</button>
+      </div>
     </div>
   );
 };
