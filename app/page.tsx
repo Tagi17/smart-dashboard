@@ -22,6 +22,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { GetAddress } from "./scanTokens/bank";
 import {GetData} from './scanTokens/polygonScanTxAmt'
 import {GetWalletAmount} from './scanTokens/polygonwalletAmount'
+import { Input } from "@/components/ui/input"
 
 // import { MainNav } from "@/components/ui/main-nav"
 // import ModeToggle from '@/www/registry/default/example/mode-toggle';
