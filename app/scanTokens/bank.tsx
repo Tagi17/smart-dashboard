@@ -76,14 +76,14 @@ export const GetAddress: React.FC = () => {
 
   return (
     <div>
-      <div className="w-44">
+      <div className="text-lg w-44">
         <Input
           type="text"
           onChange={handleAmountChange}
           placeholder="Enter Amount"
         />
       </div>
-      <div className="px-2 py-1">
+      <div className="px-2 py-1 text-lg">
         <button onClick={handleClickApprove}>Approve</button>
         <br />
         <button onClick={handleClickMint}>Mint</button>

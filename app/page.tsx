@@ -19,6 +19,7 @@ import {
 import AnimatedBanner from './animatedBanner';
 import { Button } from "@/components/ui/button"
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import EditName from './editName';
 import { GetAddress } from "./scanTokens/bank";
 import {GetData} from './scanTokens/polygonScanTxAmt'
 import {GetWalletAmount} from './scanTokens/polygonwalletAmount'
@@ -84,7 +85,7 @@ function Page() {
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">
+                      <CardTitle className="text-2xl font-medium">
                         Address:
                       </CardTitle>
                       <svg
@@ -101,12 +102,13 @@ function Page() {
                       </svg>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-2xl font-bold">Jason&apos;s Wallet</div>
+                      {/* <div className="text-2xl font-bold">Jason&apos;s Wallet</div> */}
+                      <EditName/>
                     </CardContent>
                   </Card>
                   <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">
+                      <CardTitle className="text-2xl font-medium">
                         Total Transactions
                         
                       </CardTitle>
@@ -133,7 +135,7 @@ function Page() {
                   </Card>
                   <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">Wallet Amount</CardTitle>
+                      <CardTitle className="text-xl font-medium">Wallet Amount</CardTitle>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -160,7 +162,7 @@ function Page() {
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
                   <Card >
                     <CardHeader className="flex flex-row items-center justify-between space-y-1.5 p-5">
-                      <CardTitle className="text-sm font-medium">
+                      <CardTitle className="text-2xl font-medium">
                         Bank Contract 
                       </CardTitle>
                       <svg
@@ -187,7 +189,7 @@ function Page() {
                   </Card>
                   <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-1.5 p-5">
-                      <CardTitle className="text-sm font-medium">
+                      <CardTitle className="text-2xl font-medium">
                         Transactions 
                       </CardTitle>
                       <svg
@@ -216,7 +218,7 @@ function Page() {
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
                   <Card className="col-span-4">
                     <CardHeader>
-                      <CardTitle>Crypto Balance</CardTitle>
+                      <CardTitle>Crypto Assets</CardTitle>
                     </CardHeader>
                     <CardContent className="pl-2">
                       {/* <Overview /> */}
@@ -228,9 +230,9 @@ function Page() {
                       <p>
                         You made 265 sales this month.
                       </p>
-                      <CardDescription>
+                      {/* <CardDescription>
                         You made 265 sales this month.
-                      </CardDescription>
+                      </CardDescription> */}
                     </CardHeader>
                     <CardContent>
                     </CardContent>
