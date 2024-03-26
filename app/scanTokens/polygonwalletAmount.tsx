@@ -29,6 +29,7 @@ export const GetWalletAmount = () => {
           
           try {
             const response = await axios.get(apiUrl);
+            console.log("Entire API Response:", response);
             if (response.data.status !== '1') {
               console.error('Error from API:', response.data.message);
               return;
@@ -43,7 +44,7 @@ export const GetWalletAmount = () => {
           getAddressAndSetApiData();
         }
         console.log("Complete API Response:", apiData);
-      }, [apiData, address]);
+      }, [ address]);
 
       const formatBalance = (balance: string): string => {
         const numericBalance = parseFloat(balance);

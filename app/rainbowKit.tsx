@@ -33,10 +33,10 @@ export const mumbaiPolygonTestnet: Chain  = {
   },
   rpcUrls: {
     default: {
-      http: ['https://rpc-mumbai.maticvigil.com/'],
+      http: ['https://polygon-mumbai-bor-rpc.publicnode.com'],
     },
     public: {
-      http: ['https://rpc-mumbai.maticvigil.com/'],
+      http: ['https://polygon-mumbai-bor-rpc.publicnode.com'],
     },
   },
   blockExplorers: {
