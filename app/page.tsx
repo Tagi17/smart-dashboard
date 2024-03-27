@@ -16,10 +16,10 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 
-import AnimatedBanner from './animatedBanner';
+import AnimatedBanner from './components/animatedBanner';
 import { Button } from "@/components/ui/button"
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import EditName from './editName';
+import EditName from './components/editName';
 import { GetAddress } from "./scanTokens/bank";
 import {GetData} from './scanTokens/polygonScanTxAmt'
 import {GetWalletAmount} from './scanTokens/polygonwalletAmount'
@@ -110,7 +110,6 @@ function Page() {
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-2xl font-medium">
                         Total Transactions
-                        
                       </CardTitle>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +189,7 @@ function Page() {
                   <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-1.5 p-5">
                       <CardTitle className="text-2xl font-medium">
-                        Transactions 
+                        Defi Protocols
                       </CardTitle>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -208,8 +207,8 @@ function Page() {
                       </svg>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-2xl font-bold">+2350</div>
-                      <p className="text-xs text-muted-foreground">
+                      <div className="text-2xl font-bold">Aave</div>
+                      <p className="text-xs text-muted-foreground pt-2">
                         +180.1% from last month
                       </p>
                     </CardContent>
