@@ -24,6 +24,7 @@ import { GetAddress } from "./scanTokens/bank";
 import {GetData} from './scanTokens/polygonScanTxAmt'
 import {GetWalletAmount} from './scanTokens/polygonwalletAmount'
 import { Input } from "@/components/ui/input"
+import {WriteFunctions} from "./aave/readFunction"
 
 // import { MainNav } from "@/components/ui/main-nav"
 // import ModeToggle from '@/www/registry/default/example/mode-toggle';
@@ -207,10 +208,9 @@ function Page() {
                       </svg>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-2xl font-bold">Aave</div>
-                      <p className="text-xs text-muted-foreground pt-2">
-                        +180.1% from last month
-                      </p>
+                        <div className="text-2xl ">Aave</div>
+                        <div><WriteFunctions/></div>
+
                     </CardContent>
                   </Card>
                 </div>
