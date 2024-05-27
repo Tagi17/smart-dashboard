@@ -13,7 +13,6 @@ import {
   GetRainbowKitProvider,
   chains,
   connectors,
-  mumbaiPolygonTestnet,
   wagmiConfig,
 } from "../rainbowKit";
 import { WagmiConfig, createConfig } from "wagmi";
