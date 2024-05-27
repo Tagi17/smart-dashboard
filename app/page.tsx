@@ -225,10 +225,10 @@ function Page() {
                   </Card>
                   <Card className="col-span-3">
                     <CardHeader>
-                      <CardTitle>Recent Transactions</CardTitle>
-                      <p>
+                      {/* <CardTitle>Recent Transactions</CardTitle> */}
+                      {/* <p>
                         You made 265 sales this month.
-                      </p>
+                      </p> */}
                       {/* <CardDescription>
                         You made 265 sales this month.
                       </CardDescription> */}
