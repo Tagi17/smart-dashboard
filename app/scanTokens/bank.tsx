@@ -21,15 +21,13 @@ export const GetAddress: React.FC = () => {
   const bankAddress = "0x0a6ab0B97550436D299F385572C6014Ccf4D55A2";
   const { address } = useAccount();
 
-  const { write: writeApprove, isSuccess: isSuccessApprove } = useContractWrite(
-    {
+  const { write: writeApprove, isSuccess: isSuccessApprove } = useContractWrite({
       address: "0x02BdEE024e555Df8764F0157dCd2f64e121Bc769",
       abi: tokenConfig.abi,
       functionName: "approve",
       args: [bankAddress, parseEther(enteredAmount)],
       account: address,
-    }
-  );
+    });
 
   const { write: writeMint, isSuccess: isSuccessMint } = useContractWrite({
     address: "0x02BdEE024e555Df8764F0157dCd2f64e121Bc769",
@@ -39,8 +37,7 @@ export const GetAddress: React.FC = () => {
     account: address,
   });
 
-  const { write: writeWithdraw, isSuccess: isSuccessWithdraw } =
-    useContractWrite({
+  const { write: writeWithdraw, isSuccess: isSuccessWithdraw } =useContractWrite({
       address: "0x0a6ab0B97550436D299F385572C6014Ccf4D55A2",
       abi: bankConfig.abi,
       functionName: "withdraw",
@@ -63,7 +60,6 @@ export const GetAddress: React.FC = () => {
     console.log("Withdraw button clicked");
     writeWithdraw();
   };
-
   const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     const numericValue = parseFloat(inputValue);
@@ -77,11 +73,7 @@ export const GetAddress: React.FC = () => {
   return (
     <div>
       <div className="text-lg w-44">
-        <Input
-          type="text"
-          onChange={handleAmountChange}
-          placeholder="Enter Amount"
-        />
+        <Input type="text" onChange={handleAmountChange} placeholder="Enter Amount"/>
       </div>
       <div className="px-2 py-1 text-lg">
         <button onClick={handleClickApprove}>Approve</button>

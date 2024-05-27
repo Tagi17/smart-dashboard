@@ -21,10 +21,9 @@ import { useAccount } from 'wagmi';
 // interface ExtendedChain extends Chain {
 //   network?: string;
 // }
-
-export const mumbaiPolygonTestnet: Chain  = {
-  id: 80001, 
-  name: 'Mumbai',
+export const polygonMainnet: Chain = {
+  id: 137,
+  name: 'Polygon Mainnet',
   network: 'polygon',
   nativeCurrency: {
     decimals: 18,
@@ -33,20 +32,42 @@ export const mumbaiPolygonTestnet: Chain  = {
   },
   rpcUrls: {
     default: {
-      http: ['https://polygon-mumbai-bor-rpc.publicnode.com'],
+      http: ['wss://polygon-bor-rpc.publicnode.com'],
     },
     public: {
-      http: ['https://polygon-mumbai-bor-rpc.publicnode.com'],
-    },
+      http: ['wss://polygon-bor-rpc.publicnode.com'],
+    }
   },
   blockExplorers: {
-    default: { name: 'Mumbai Explorer', url: 'https://mumbai-explorer.matic.today' },
+    default: { name: 'PolygonScan', url: 'wss://polygon-bor-rpc.publicnode.com' },
   },
-  testnet: true,
+  testnet: false,
 };
+// export const mumbaiPolygonTestnet: Chain  = {
+//   id: 80001, 
+//   name: 'Mumbai',
+//   network: 'polygon',
+//   nativeCurrency: {
+//     decimals: 18,
+//     name: 'MATIC',
+//     symbol: 'MATIC',
+//   },
+//   rpcUrls: {
+//     default: {
+//       http: ['https://polygon-mumbai-bor-rpc.publicnode.com'],
+//     },
+//     public: {
+//       http: ['https://polygon-mumbai-bor-rpc.publicnode.com'],
+//     },
+//   },
+//   blockExplorers: {
+//     default: { name: 'Mumbai Explorer', url: 'https://mumbai-explorer.matic.today' },
+//   },
+//   testnet: true,
+// };
 
  const chainsResult  = configureChains(
-  [mainnet, polygon, goerli, mumbaiPolygonTestnet],
+  [mainnet, polygon, goerli, polygonMainnet],
   [publicProvider()],
 );
 export const chains = chainsResult.chains;
