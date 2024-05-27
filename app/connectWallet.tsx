@@ -1,5 +1,5 @@
 import { Chain, ConnectButton, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
-import { GetRainbowKitProvider, chains, connectors, mumbaiPolygonTestnet, wagmiConfig } from "./rainbowKit"
+import { GetRainbowKitProvider, chains, connectors, wagmiConfig } from "./rainbowKit"
 import { WagmiConfig, createConfig } from 'wagmi';
 
 import IsMounted from "./components/isMounted";
